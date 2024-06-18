@@ -10,6 +10,7 @@ const pfServer = express()
 pfServer.use(cors())
 pfServer.use(express.json())
 pfServer.use(router)
+pfServer.use('/Uploads',express.static('./Uploads'))
 
 const PORT = 3000 || process.env.PORT
 

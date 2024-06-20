@@ -37,8 +37,14 @@ exports.getHomeProjects = async (req,res)=>{
 // all projects
 exports.allProjectsController = async (req,res)=>{
     console.log("Inside allProjectsController");
+    const searchKey = req.query.search
+    const query = {
+        language: {
+            $regex:searchKey,$options:"i"
+        }
+    }
     try {
-        const allProjects = await projects.find()
+        const allProjects = await projects.find(query)
         res.status(200).json(allProjects)
     } catch (error) {
         res.status(401).json(error)
